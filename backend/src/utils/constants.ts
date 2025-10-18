@@ -1,0 +1,7 @@
+export const ESTADOS_PROYECTO = [
+  'PLANIFICACION',
+  'EN_PROGRESO', 
+  'BLOQUEADO',
+  'FINALIZADO',
+  'CANCELADO'
+] as const;
