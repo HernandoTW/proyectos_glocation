@@ -1,12 +1,13 @@
 import axios from 'axios';
 
-const API_BASE = 'http://localhost:3000/api';
+// OPCIÓN 1 (Recomendada):
+const API_BASE = 'http://localhost:3000'; // SIN /api
 
 export const api = axios.create({
   baseURL: API_BASE,
-  timeout: 10000,
+  timeout: 15000,
 });
 
 export const proyectoService = {
-  getAll: () => api.get('/proyectos'),
+  getAll: () => api.get('/api/proyectos'), // CON /api
 };
