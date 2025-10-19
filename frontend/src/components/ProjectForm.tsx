@@ -29,7 +29,17 @@ export const ProjectForm: React.FC<ProjectFormProps> = ({ proyecto, onSave, onCa
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    onSave(formData);
+    
+    // Preparar datos para el backend
+    const dataToSend = {
+      nombre: formData.nombre,
+      descripcion: formData.descripcion,
+      estado: formData.estado,
+      fechaInicio: new Date(formData.fechaInicio).toISOString(),
+      fechaFin: formData.fechaFin ? new Date(formData.fechaFin).toISOString() : null
+    };
+    
+    onSave(dataToSend);
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
@@ -60,7 +70,7 @@ export const ProjectForm: React.FC<ProjectFormProps> = ({ proyecto, onSave, onCa
         overflow: 'auto'
       }}>
         <h2 style={{ marginBottom: '1.5rem', color: '#2c3e50' }}>
-          {proyecto ? '✏️ Editar Proyecto' : '➕ Nuevo Proyecto'}
+          {proyecto ? 'Editar Proyecto' : 'Nuevo Proyecto'}
         </h2>
         
         <form onSubmit={handleSubmit}>
@@ -74,6 +84,8 @@ export const ProjectForm: React.FC<ProjectFormProps> = ({ proyecto, onSave, onCa
               value={formData.nombre}
               onChange={handleChange}
               required
+              minLength={1}
+              maxLength={100}
               style={{
                 width: '100%',
                 padding: '0.75rem',
@@ -86,13 +98,15 @@ export const ProjectForm: React.FC<ProjectFormProps> = ({ proyecto, onSave, onCa
 
           <div style={{ marginBottom: '1rem' }}>
             <label style={{ display: 'block', marginBottom: '0.5rem', fontWeight: 'bold', color: '#34495e' }}>
-              Descripción:
+              Descripcion:
             </label>
             <textarea
               name="descripcion"
               value={formData.descripcion}
               onChange={handleChange}
               required
+              minLength={1}
+              maxLength={500}
               rows={4}
               style={{
                 width: '100%',
@@ -121,11 +135,11 @@ export const ProjectForm: React.FC<ProjectFormProps> = ({ proyecto, onSave, onCa
                 fontSize: '1rem'
               }}
             >
-              <option value="PLANIFICACION">📋 Planificación</option>
-              <option value="EN_PROGRESO">🚀 En Progreso</option>
-              <option value="BLOQUEADO">🛑 Bloqueado</option>
-              <option value="FINALIZADO">✅ Finalizado</option>
-              <option value="CANCELADO">❌ Cancelado</option>
+              <option value="PLANIFICACION">Planificacion</option>
+              <option value="EN_PROGRESO">En Progreso</option>
+              <option value="BLOQUEADO">Bloqueado</option>
+              <option value="FINALIZADO">Finalizado</option>
+              <option value="CANCELADO">Cancelado</option>
             </select>
           </div>
 

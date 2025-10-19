@@ -43,14 +43,14 @@ function App() {
   };
 
   const handleDelete = async (id: number) => {
-    if (confirm('¿Estás seguro de eliminar este proyecto?')) {
+    if (confirm('Estas seguro de eliminar este proyecto?')) {
       try {
         await axios.delete(`http://localhost:3000/api/proyectos/${id}`);
         cargarDatos();
-        alert('✅ Proyecto eliminado correctamente');
+        alert('Proyecto eliminado correctamente');
       } catch (error) {
         console.error('Error eliminando proyecto:', error);
-        alert('❌ Error al eliminar el proyecto');
+        alert('Error al eliminar el proyecto');
       }
     }
   };
@@ -59,17 +59,17 @@ function App() {
     try {
       if (editingProyecto) {
         await axios.put(`http://localhost:3000/api/proyectos/${editingProyecto.id}`, data);
-        alert('✅ Proyecto actualizado correctamente');
+        alert('Proyecto actualizado correctamente');
       } else {
         await axios.post('http://localhost:3000/api/proyectos', data);
-        alert('✅ Proyecto creado correctamente');
+        alert('Proyecto creado correctamente');
       }
       setShowForm(false);
       setEditingProyecto(null);
       cargarDatos();
     } catch (error: any) {
       console.error('Error guardando proyecto:', error);
-      alert(error.response?.data?.message || '❌ Error al guardar el proyecto');
+      alert(error.response?.data?.message || 'Error al guardar el proyecto');
     }
   };
 
@@ -78,8 +78,8 @@ function App() {
       const response = await axios.post('http://localhost:3000/api/analytics/analisis');
       setAnalisis(response.data.data.resumen);
     } catch (error) {
-      console.error('Error generando análisis:', error);
-      alert('❌ Error al generar el análisis');
+      console.error('Error generando analisis:', error);
+      alert('Error al generar el analisis');
     }
   };
 
@@ -94,17 +94,6 @@ function App() {
     return colors[estado] || '#95a5a6';
   };
 
-  const getEstadoIcon = (estado: string) => {
-    const icons: { [key: string]: string } = {
-      'PLANIFICACION': '📋',
-      'EN_PROGRESO': '🚀',
-      'BLOQUEADO': '🛑',
-      'FINALIZADO': '✅',
-      'CANCELADO': '❌'
-    };
-    return icons[estado] || '📁';
-  };
-
   if (loading) {
     return (
       <div style={{ 
@@ -115,7 +104,7 @@ function App() {
         fontSize: '1.5rem',
         color: '#2c3e50'
       }}>
-        ⏳ Cargando proyectos...
+        Cargando proyectos...
       </div>
     );
   }
@@ -133,7 +122,7 @@ function App() {
       }}>
         <div>
           <h1 style={{ color: '#2c3e50', margin: 0 }}>
-            🚀 Gestor de Proyectos
+            Gestor de Proyectos
           </h1>
           <p style={{ color: '#7f8c8d', margin: '0.5rem 0 0 0' }}>
             {proyectos.length} proyectos registrados
@@ -149,20 +138,17 @@ function App() {
             borderRadius: '6px',
             cursor: 'pointer',
             fontSize: '1rem',
-            fontWeight: 'bold',
-            display: 'flex',
-            alignItems: 'center',
-            gap: '0.5rem'
+            fontWeight: 'bold'
           }}
         >
-          ➕ Nuevo Proyecto
+          Nuevo Proyecto
         </button>
       </header>
 
-      {/* Gráfico */}
+      {/* Grafico */}
       {estadisticas.length > 0 && <Charts data={estadisticas} />}
 
-      {/* Análisis IA */}
+      {/* Analisis IA */}
       <section style={{ marginBottom: '2rem' }}>
         <div style={{ 
           background: 'white', 
@@ -171,7 +157,7 @@ function App() {
           boxShadow: '0 2px 10px rgba(0,0,0,0.1)' 
         }}>
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1rem' }}>
-            <h3 style={{ margin: 0, color: '#2c3e50' }}>🤖 Análisis IA de Proyectos</h3>
+            <h3 style={{ margin: 0, color: '#2c3e50' }}>Analisis IA de Proyectos</h3>
             <button
               onClick={handleAnalisis}
               style={{
@@ -184,7 +170,7 @@ function App() {
                 fontSize: '0.9rem'
               }}
             >
-              Generar Análisis
+              Generar Analisis
             </button>
           </div>
           {analisis && (
@@ -205,7 +191,7 @@ function App() {
 
       {/* Tabla de Proyectos */}
       <section>
-        <h2 style={{ marginBottom: '1rem', color: '#34495e' }}>📋 Lista de Proyectos</h2>
+        <h2 style={{ marginBottom: '1rem', color: '#34495e' }}>Lista de Proyectos</h2>
         <div style={{ overflowX: 'auto' }}>
           <table style={{ 
             width: '100%', 
@@ -218,7 +204,7 @@ function App() {
               <tr style={{ background: '#34495e', color: 'white' }}>
                 <th style={{ padding: '1rem', textAlign: 'left' }}>ID</th>
                 <th style={{ padding: '1rem', textAlign: 'left' }}>Nombre</th>
-                <th style={{ padding: '1rem', textAlign: 'left' }}>Descripción</th>
+                <th style={{ padding: '1rem', textAlign: 'left' }}>Descripcion</th>
                 <th style={{ padding: '1rem', textAlign: 'left' }}>Estado</th>
                 <th style={{ padding: '1rem', textAlign: 'left' }}>Fecha Inicio</th>
                 <th style={{ padding: '1rem', textAlign: 'left' }}>Acciones</th>
@@ -250,12 +236,9 @@ function App() {
                       color: 'white',
                       fontSize: '0.875rem',
                       fontWeight: 'bold',
-                      display: 'flex',
-                      alignItems: 'center',
-                      gap: '0.5rem',
-                      width: 'fit-content'
+                      display: 'inline-block'
                     }}>
-                      {getEstadoIcon(proyecto.estado)} {proyecto.estado}
+                      {proyecto.estado}
                     </span>
                   </td>
                   <td style={{ padding: '1rem', background: 'white' }}>
@@ -276,7 +259,7 @@ function App() {
                           fontWeight: 'bold'
                         }}
                       >
-                        ✏️ Editar
+                        Editar
                       </button>
                       <button
                         onClick={() => handleDelete(proyecto.id)}
@@ -291,7 +274,7 @@ function App() {
                           fontWeight: 'bold'
                         }}
                       >
-                        🗑️ Eliminar
+                        Eliminar
                       </button>
                     </div>
                   </td>
