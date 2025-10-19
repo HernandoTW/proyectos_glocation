@@ -27,6 +27,9 @@ Frontend (React + TypeScript)
 - Análisis con IA en tiempo real
 - Estilos modernos sin frameworks CSS
 
+Mobile
+- Interfaz que permite listar los proyectos.
+
 Base de Datos
 - PostgreSQL con modelo relacional
 - Prisma ORM para type-safe queries
@@ -49,6 +52,12 @@ Frontend
 * Chart.js + React-Chartjs-2
 * Axios para HTTP requests
 * CSS vanilla responsivo
+
+Mobile
+* React Native + TypeScript
+* Expo para desarrollo rápido
+* Axios para API calls
+* FlatList para tabla móvil
 
 
 # ------------- INSTALACION Y CONFIGURACION ------------- #
