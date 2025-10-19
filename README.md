@@ -16,7 +16,7 @@ Backend (Node.js + Express):
 - Validaciones con Zod
 - Documentación Swagger/OpenAPI
 - Integración con IA (DeepSeek API)
-- Manejo de errores profesional
+- Manejo de errores
 - Arquitectura por capas (Controller > Service > Repository)
 
 Frontend (React + TypeScript)
@@ -27,7 +27,7 @@ Frontend (React + TypeScript)
 - Análisis con IA en tiempo real
 - Estilos modernos sin frameworks CSS
 
-Mobile
+Mobile (React Native + TypeScript)
 - Interfaz que permite listar los proyectos.
 
 Base de Datos
@@ -59,6 +59,8 @@ Mobile
 * Axios para API calls
 * FlatList para tabla móvil
 
+Contenerización
+* Docker
 
 # ------------- INSTALACION Y CONFIGURACION ------------- #
 
@@ -114,6 +116,11 @@ npm install
 # Iniciar servidor de desarrollo
 npm run dev
 El frontend estará en: http://localhost:5173
+
+Ejecución con Docker (Opcional)
+1. `docker-compose up --build`
+2. Backend: http://localhost:3000
+3. Frontend: http://localhost:5173
 
 
 # ------------- USO DE LA APLICACION ------------- #
